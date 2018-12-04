@@ -2,4 +2,4 @@
 ====
 
 每日更新
-下载地址: [http://ipcn.chacuo.net/](http://ipcn.chacuo.net/)
+下载地址: [https://stat.ripe.net/](https://stat.ripe.net/)

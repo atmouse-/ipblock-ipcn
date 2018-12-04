@@ -5,7 +5,7 @@ image: python:3.7
 ipblock-ipcn:
   stage: build
   script:
-    - python get-ipcn.py
+    - python get-netblock-cn.py
   only:
     - master
   tags:
