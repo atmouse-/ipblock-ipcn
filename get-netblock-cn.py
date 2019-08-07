@@ -269,5 +269,5 @@ if __name__ == "__main__":
                     # print("{}:{}".format(asn, des["description"]))
                     if not fetch_asn_announced_prefix(org, asn):
                         sys.exit(1)
-                    # sleep 10sec may bypass antibot
-                    time.sleep(10)
+                    # sleeping may bypass antibot
+                    time.sleep(1)
