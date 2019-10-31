@@ -19,10 +19,16 @@ jobs:
           name: generate
           command: |
             python get-netblock-cn.py
+            sh init-ip2location-db.sh
+            python get-netblock-cdn.py
 
       - store_artifacts:
           path: ~/repo/ipcn
           destination: ipcn
+
+      - store_artifacts:
+          path: ~/repo/ipcdn
+          destination: ipcdn
 
 workflows:
   version: 2
