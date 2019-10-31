@@ -18,6 +18,8 @@ jobs:
       - run:
           name: generate
           command: |
+            sudo pip install pipenv
+            pipenv install netaddr
             python get-netblock-cn.py
             sh init-ip2location-db.sh
             python get-netblock-cdn.py
