@@ -20,9 +20,9 @@ jobs:
           command: |
             sudo pip install pipenv
             pipenv install netaddr
-            python get-netblock-cn.py
+            pipenv run python get-netblock-cn.py
             sh init-ip2location-db.sh
-            python get-netblock-cdn.py
+            pipenv run python get-netblock-cdn.py
 
       - store_artifacts:
           path: ~/repo/ipcn
