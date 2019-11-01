@@ -23,6 +23,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pipenv install netaddr
     - name: fetch-data
       run: |
         pipenv run python get-netblock-cn.py
