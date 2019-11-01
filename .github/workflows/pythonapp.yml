@@ -1,0 +1,40 @@
+name: nightlybuild
+
+on:
+  push:
+    branches: 
+      - master
+      - release/*
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: fetch-data
+      run: |
+        pipenv run python get-netblock-cn.py
+        sh init-ip2location-db.sh
+        pipenv run python get-netblock-cdn.py
+    - name: upload-ipcn
+      uses: actions/upload-artifact@master
+      with:
+        name: nightly-artifact-ipcn
+        path: ipcn
+    - name: upload-ipcdn
+      uses: actions/upload-artifact@master
+      with:
+        name: nightly-artifact-ipcdn
+        path: ipcdn
