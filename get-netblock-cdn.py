@@ -229,9 +229,10 @@ def fetch_aws_announced_prefix(service="CLOUDFRONT"):
     fileout = open(txt_file, 'w')
     ctx = json.loads(filein.read())
     for n in ctx['prefixes']:
-        if n['service'] == "CLOUDFRONT":
+        if n['service'] == service:
             fileout.write(n['ip_prefix'])
             fileout.write("\n")
+    os.remove(json_file)
     return True
 
 def __parse_asn_announced_prefix(source_file, to_file):

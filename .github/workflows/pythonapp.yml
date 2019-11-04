@@ -29,6 +29,7 @@ jobs:
         pipenv run python get-netblock-cn.py
         sh init-ip2location-db.sh
         pipenv run python get-netblock-cdn.py
+        pipenv run python get-netblock-cloud.py
     - name: upload-ipcn
       uses: actions/upload-artifact@master
       with:
@@ -39,3 +40,8 @@ jobs:
       with:
         name: nightly-artifact-ipcdn
         path: ipcdn
+    - name: upload-ipcloud
+      uses: actions/upload-artifact@master
+      with:
+        name: nightly-artifact-ipcloud
+        path: ipcloud
