@@ -149,6 +149,7 @@ def fetch_aws_announced_prefix(service="AMAZON"):
     fileout = open(txt_file, 'w')
     ctx = json.loads(filein.read())
     for n in ctx['prefixes']:
+        if n['region'].startswith("cn-"): continue
         if n['service'] == service:
             fileout.write(n['ip_prefix'])
             fileout.write("\n")
