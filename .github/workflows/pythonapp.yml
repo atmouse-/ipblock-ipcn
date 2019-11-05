@@ -6,7 +6,7 @@ on:
       - master
       - release/*
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "28 0 * * *"
 
 jobs:
   build:
@@ -30,18 +30,16 @@ jobs:
         sh init-ip2location-db.sh
         pipenv run python get-netblock-cdn.py
         pipenv run python get-netblock-cloud.py
-    - name: upload-ipcn
-      uses: actions/upload-artifact@master
+        mkdir public
+        mv ipcn public/
+        mv ipcdn public/
+        mv ipcloud public/
+        find public -name "*.json" -delete
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.5.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./public
       with:
-        name: nightly-artifact-ipcn
-        path: ipcn
-    - name: upload-ipcdn
-      uses: actions/upload-artifact@master
-      with:
-        name: nightly-artifact-ipcdn
-        path: ipcdn
-    - name: upload-ipcloud
-      uses: actions/upload-artifact@master
-      with:
-        name: nightly-artifact-ipcloud
-        path: ipcloud
+        emptyCommits: false
