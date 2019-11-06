@@ -35,6 +35,7 @@ jobs:
         mv ipcdn public/
         mv ipcloud public/
         find public -name "*.json" -delete
+        sh sort_files.sh
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
