@@ -9,8 +9,15 @@ import http.client
 import time
 import json
 
+NETBLOCK_COUNTRY_URL = "https://stat.ripe.net/data/country-resource-list/data.json?resource={}"
+NETBLOCK_ANNOUCED_PREFIX_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resource={}"
 
 TO_DIR = "ipcloud"
+ASN = {
+    "ZOOM": {
+        "AS30103": {"description": "Zoom Video Communications, Inc", "active": True},
+    },
+}
 
 CA_BUNDLE_FILE = ""
 
@@ -137,6 +144,34 @@ def is_file_empty(filename):
     else:
         return False
 
+def fetch_asn_announced_prefix(org, asn):
+    to_dir = os.path.join(TO_DIR, org)
+    mkdir_p(to_dir)
+    url = NETBLOCK_ANNOUCED_PREFIX_URL.format(asn)
+    json_file = os.path.join(to_dir, "{}.json".format(asn))
+    referer_url = "https://stat.ripe.net/{}#tabId=routing".format(asn)
+    http_wget(url, json_file, referer_url=referer_url)
+    if is_file_empty(json_file):
+        return False
+    to_file = os.path.join(to_dir, "{}.txt".format(asn))
+    return __parse_asn_announced_prefix(json_file, to_file)
+
+def __parse_asn_announced_prefix(source_file, to_file):
+    try:
+        fp = open(to_file, "w")
+        data = json.loads(open(source_file).read())
+        for d in data["data"]["prefixes"]:
+            # skip ipv6
+            if ":" in d["prefix"]:
+                continue
+            fp.write(d["prefix"])
+            fp.write("\n")
+            fp.flush()
+        fp.close()
+        return True
+    except:
+        return False
+
 def fetch_aws_announced_prefix(service="AMAZON"):
     to_dir = os.path.join(TO_DIR, service)
     mkdir_p(to_dir)
@@ -157,4 +192,13 @@ def fetch_aws_announced_prefix(service="AMAZON"):
     return True
 
 if __name__ == "__main__":
+    for org, asns in ASN.items():
+        if asns:
+            for asn, des in asns.items():
+                if des["active"]:
+                    # print("{}:{}".format(asn, des["description"]))
+                    if not fetch_asn_announced_prefix(org, asn):
+                        sys.exit(1)
+                    # sleeping may bypass antibot
+                    time.sleep(1)
     fetch_aws_announced_prefix()
