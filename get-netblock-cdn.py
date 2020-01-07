@@ -62,6 +62,9 @@ ASN = {
     "IDCFrontier": {
         "AS4694": {"description": "IDC Frontier Inc.", "active": True},
     },
+    "EdgeCast": {
+        "AS15133": {"description": "EdgeCast Networks, Inc. d/b/a Verizon Digital Media Services", "active": True},
+    },
 }
 
 TXT = {
