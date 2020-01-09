@@ -17,7 +17,19 @@ ASN = {
     "ZOOM": {
         "AS30103": {"description": "Zoom Video Communications, Inc", "active": True},
     },
+    "DigitalOcean": {
+        "AS14061": {"description": "DigitalOcean, LLC", "active": True},
+    },
+    "Google": {
+        "AS396982": {"description": "Google LLC, This ASN is used for Google Private Cloud", "active": True},
+    },
+    "KADOKAWA": {
+        # Self Host
+        "AS38634": {"description": "DWANGO Co.,Ltd.", "active": True},
+    },
 }
+
+DEFINE_ALL_AWS_INCLUD = True
 
 CA_BUNDLE_FILE = ""
 
