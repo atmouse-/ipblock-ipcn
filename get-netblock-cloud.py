@@ -27,6 +27,10 @@ ASN = {
         # Self Host
         "AS38634": {"description": "DWANGO Co.,Ltd.", "active": True},
     },
+    "VerizonMedia": {
+        "AS10310": {"description": "Oath Holdings Inc", "active": True},
+        "AS26101": {"description": "Oath Holdings Inc", "active": True},
+    },
 }
 
 DEFINE_ALL_AWS_INCLUD = True
