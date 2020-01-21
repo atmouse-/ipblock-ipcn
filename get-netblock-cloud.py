@@ -31,6 +31,9 @@ ASN = {
         "AS10310": {"description": "Oath Holdings Inc", "active": True},
         "AS26101": {"description": "Oath Holdings Inc", "active": True},
     },
+    "MailRu": {
+        "AS47764": {"description": "Mail.Ru LLC", "active": True},
+    },
 }
 
 DEFINE_ALL_AWS_INCLUD = True
