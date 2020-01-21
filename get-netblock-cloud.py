@@ -37,6 +37,9 @@ ASN = {
     "OCLC": {
         "AS4373": {"description": "Online Computer Library Center", "active": True},
     },
+    "RedHat": {
+        "AS31976": {"description": "Red Hat, Inc.", "active": True},
+    }
 }
 
 DEFINE_ALL_AWS_INCLUD = True
