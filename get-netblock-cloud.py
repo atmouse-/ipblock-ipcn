@@ -34,6 +34,9 @@ ASN = {
     "MailRu": {
         "AS47764": {"description": "Mail.Ru LLC", "active": True},
     },
+    "OCLC": {
+        "AS4373": {"description": "Online Computer Library Center", "active": True},
+    },
 }
 
 DEFINE_ALL_AWS_INCLUD = True
